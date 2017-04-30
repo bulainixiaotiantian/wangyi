@@ -1,0 +1,335 @@
+body,ul li{padding:0;margin:0;}
+
+
+ul li{
+    list-style:none
+}
+a{
+    text-decoration:none;
+    color:inherit;
+}
+html{font-size:100px;}
+/*----------------------首页的头部-----------------------*/
+body,ul,li,h4,h3,h2,h1,h5,h6,p{padding:0;margin:0;}
+body{
+    width: 4.14rem;
+    overflow-x: hidden;
+}
+.header{  width:4.2rem;height:65px; background:#CE3D3E;font-size:18px;color:#fff}
+.header li{float:left;list-style-type:none; padding:0 15px;}
+
+.logo{float:left;}
+.logo img{
+    margin:23px auto auto 22px;
+}
+.icon{ float:right;width:0.2rem; height:0.24rem; margin:21px 21px 0 0}
+#nav div{
+    width:1.05rem;
+
+    text-align:center;
+}
+.nav{cursor:pointer;}
+#nav {
+    font-size: 18px;
+    display: -webkit-flex;
+    display: flex;
+    flex-flow:row nowrap;
+    justify-content:space-around;
+    height:36px;
+    align-items:center;
+    position:relative;
+}
+#line{
+    height:2px;
+    width:1.05rem;
+    border-bottom:2px red solid;
+    position:absolute;
+    left:0;
+    height:36px;
+}
+/******----------时下流行的加载的内容---------------------**/
+/*--------banner-----*/
+#banner img,#banner{
+	width:4.14rem;
+    height:1.95rem;
+}
+
+.swiper-container {
+        
+       height:1.95rem;
+        
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+      
+        
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+/***-时下流行的列表内容---**/
+.seemore{
+    background-size:contain;
+    width:4.14rem;
+    height:0.41rem;
+    font-size:0.18rem;
+    line-height:0.41rem;
+}
+.seemore img{
+    margin-top:4px;
+    width:1rem;
+    height:0.29rem;
+
+}
+.seemore a{
+    text-decoration: none;
+    color: inherit;
+    float: right;
+
+}
+/***-首页歌曲菜单--------------------------**/
+#gelist{
+    padding:0;margin:0;
+    display:flex;
+    display:-webkit-flex;
+    flex-flow:row wrap;
+    justify-content:space-around;
+    align-items:center;
+}
+#gelist li{
+    list-style:none;
+    width:1.35rem;
+    height:2rem;
+    font-size:0.12em;
+    white-space:wrap;
+}
+#gelist li a{
+    display:block;
+    text-align:left;
+    line-height:0.2rem;
+    overflow:hidden;
+    white-space:wrap;
+    font-size:0.13rem;
+   text-overflow:ellipsis;
+    -ms-text-overflow:ellipsis;
+}
+#gelist li img{
+    width:1.36rem;
+    height:1.36rem;
+
+}
+/*-------------歌曲列表组件--------------*/
+#banner_detail{
+    height:2.6rem;
+    margin: 0.04rem;
+    Background:#3c3932;
+
+    color:#fff;
+
+}
+
+#banner_detail .title{
+    font-size:0.28rem;
+    height:0.58rem;
+    line-height:0.58rem;
+}
+#banner_detail .title i{
+    margin:0 0.22rem;
+}
+#banner_detail>img{
+    width:1.57rem;
+    height:1.57rem;
+    margin:0 0 0 0.13rem;
+    float:left;
+}
+#banner_detail .left{
+    float:left;
+    width:1.87rem;
+    margin: 0.21rem 0 0 0.23rem;
+}
+#banner_detail h3{
+    width:1.7rem;
+
+    float:left;
+    font-size:0.18rem;
+    line-height:0.22rem;
+    font-famliy:"微软雅黑";
+    height:0.52rem;
+
+}
+
+#banner_detail span{
+    float:left;
+    display:block;
+    width:1.7rem;
+    height:0.6rem;
+}
+#banner_detail span img{
+    width:0.3rem;
+    height:0.3rem;
+    border:0;
+    margin:none;
+    float: left;
+    border-radius:50%;
+}
+#banner_detail span p{
+    font-size:0.18rem;
+    float:left;
+
+}
+
+/*--------------歌曲目录列表------------------------*/
+
+#modeList {
+    display:flex;
+    display:-webkit-flex;
+    flex-flow:column nowrap;
+    justify-content:center;
+}
+#modeList li{
+    width:4.1rem;
+    height:0.8rem;
+    font:0.18rem/0.5rem "微软雅黑";
+    cursor:pointer;
+	
+}
+modeList li:hover {
+	background:#ccc;
+}
+#modeList  span{
+    display:block;
+    float:left;
+    width:0.7rem;
+    text-align:center;
+}
+ #all{height:0.4rem; border-bottom:0.01rem #ccc solid;font: 0.18rem/0.5rem "微软雅黑";}
+ #all span{
+	display: block;
+	background: url(../images/all.png) no-repeat 0.00rem 0.08rem;
+    padding-left: 36px;
+    width: 0.8rem;
+    cursor: pointer;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    margin-left: 25px;
+}
+ #all span:hover{
+	background-color:#ccc;
+}
+#modeList li .item{
+    float:left;
+    width:3rem;
+    height: 0.79rem;
+    overflow:hidden;
+    border-bottom:1px solid #e8e4e4;
+}
+#modeList li h4,#modeList li h5{
+   height:0.3rem;
+}
+#modeList li h5{
+    color:#757575;
+}
+/*---------歌曲播放控制------------*/
+ .contro{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:4.14rem;
+    height:0.49rem;
+    background:#fff;
+    display:none;
+
+}
+#playlist  button{
+    border:none;
+    background:none;
+}
+#menu,#play,#next{
+    width:0.38rem;
+    height:0.38rem;
+    float:right;
+    margin:0.07rem 0.08rem 0;
+	cursor:pointer;
+}
+#menu{
+    background:url(../images/contro_03.png) no-repeat;
+}
+#play{
+    background:url(../images/contro_05__05.png) no-repeat;
+
+}
+#next{
+    background:url(../images/contro_07.png) no-repeat;
+}
+.detail {
+    float:left;
+    width:1.97rem;
+    height:0.4rem;
+    pardding:0.04rem 0 0 0.06rem;
+}
+.detail .left{
+    width:0.4rem;
+    height:0.4rem;
+    float:left;
+}
+.detail .right{
+    float: left;
+    height: 0.8rem;
+    width: 1.4rem;
+	padding-top: 0.05rem;
+}
+.detail .right H4{
+   
+    font-size:0.15rem;
+	font-family:"微软雅黑"
+}
+.detail .right H5{
+    float:left;font-family:"微软雅黑";
+    font-size:0.14rem;
+    color:#757575;
+	font-weight:nomal;
+}
+
+/*-----------------导航歌曲页面列表--------------------------------*/
+#gelis{
+    overflow-y: scroll;
+    padding:0;margin:0;
+    display:flex;
+    display:-webkit-flex;
+    flex-flow:row wrap;
+    justify-content:space-around;
+    align-items:center;
+}
+#gelis li{
+    list-style:none;
+    width:1.95rem;
+    height:2.37rem;
+    font-size:0.12em;
+    white-space:wrap;
+}
+#gelis li a{
+    display:block;
+    text-align:left;
+    line-height:0.2rem;
+    overflow:hidden;
+    white-space:wrap;
+    font-size:0.13rem;
+    text-overflow:ellipsis;
+    -ms-text-overflow:ellipsis;
+}
+#gelis li img{
+    width:1.95rem;
+    height:1.875rem;
+
+}

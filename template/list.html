@@ -1,0 +1,56 @@
+<ul id="gelis">
+
+</ul>
+<script>
+    //加载歌单页面的数据
+    var start=0;
+	var img_url="";
+    loadMusiList();
+    //更新数据流
+    update()
+
+    function update(){
+        window.onscroll=function(){
+            var o_h=document.documentElement.clientHeight||document.body.clientHeight;//得到浏览器的高度
+            var s_top=document.documentElement.scrollTop||document.body.scrollTop;//得到当前页面滚出去的高度
+            var s_h=document.documentElement.scrollHeight||document.body.scrollHeight;//得到当前的文档的刚度
+            if(o_h+s_top>=s_h){     //判断当文档滚动到底的时候，让变量start加6
+                start+=6;
+                //alert(3);
+                loadMusiList();
+            };
+
+            //改变start的值以后，再次请求数据更新
+        };
+
+    };
+function loadMusiList(){
+
+    var _url="http://musicapi.duapp.com/api.php?type=topPlayList&cat="+encodeURIComponent("全部")+"&offset="+start+"&limit=6";
+
+    var gelist="";
+    
+    //encodeURIComponent("全部")的作用是把汉字变成了数字,因为url中别人给的这里有可能是汉字，需要编码操作
+    $.get(_url,null,function(data,a){
+        if(a=='success'){
+            //遍历解析歌曲目录的列表的数据
+            for(var k in data.playlists){
+                gelist+="<li>"+"<img src='"+data.playlists[k]["coverImgUrl"]+"'><a href='#/detailPlayList/"+data.playlists[k]["id"]+"'>"+data.playlists[k]["name"]+"</a></li>";
+            };
+            $("#gelis").append(gelist);
+
+            //点击每一个a标签，就让body加载detailPlayList.html;
+            $("#gelis a").click(function(){
+                //获得被点击的a的兄弟img的src值，给一个全局变量
+                img_url= $(this).siblings().attr("src");
+                loadModel("body","template/detailPlayList.html")
+            });
+        };
+    });
+};
+
+
+</script>
+
+
+

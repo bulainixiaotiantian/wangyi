@@ -1,0 +1,61 @@
+<div id="index">
+    <div id="banner">
+        <div class="swiper-container">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide"><img src="images/banner.gif"></div>
+									<div class="swiper-slide"><img src="images/a.jpg"></div>
+									<div class="swiper-slide"><img src="images/a1.jpg"></div>
+									<div class="swiper-slide"><img src="images/a2.jpg"></div>
+									<div class="swiper-slide">Slide 5</div>
+									<div class="swiper-slide">Slide 6</div>
+									
+								</div>
+        <!-- Add Pagination -->
+								<div class="swiper-pagination"></div>
+		</div>
+    </div>
+    <div class='seemore'><img src="images/tuijian.png"><a href="#">更多》</a></div>
+   <ul id="gelist">
+
+   </ul>
+
+</div>
+<script>
+	var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        spaceBetween: 30,
+    });
+//    var _encode=encodeURIComponent("全部");//编码 ****URI格式的编码
+//    var _font=decodeURIComponent(_encode);<img src="images/banner.gif">
+
+var _url="http://musicapi.duapp.com/api.php?type=topPlayList&cat="+encodeURIComponent("全部")+"&offset=0&limit=6";
+
+var gelist="";
+var img_url="";
+
+//encodeURIComponent("全部")的作用是把汉字变成了数字,因为url中别人给的这里有可能是汉字，需要编码操作
+    $.get(_url,null,function(data,a){
+        if(a=='success'){
+            for(var k in data.playlists){
+                gelist+="<li>"+"<img src='"+data.playlists[k]["coverImgUrl"]+"'><a href='#/detailPlayList/"+data.playlists[k]["id"]+"'>"+data.playlists[k]["name"]+"</a></li>";
+            };
+            $("#gelist").html(gelist);
+
+            //点击每一个a标签，就让body加载detailPlayList.html;
+            $("#gelist a").click(function(){
+                //获得被点击的a的兄弟img的src值，给一个全局变量
+                img_url= $(this).siblings().attr("src");
+                loadModel("body","template/detailPlayList.html")
+
+            })
+
+        };
+        //遍历解析歌曲目录的列表的数据
+
+
+
+    })
+
+
+</script>

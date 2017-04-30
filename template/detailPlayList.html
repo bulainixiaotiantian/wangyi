@@ -1,0 +1,140 @@
+<div id="playlist">
+    <div id="banner_detail">
+        <div class="title">
+             <a href="index.html">
+                <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+             </a>歌单</div>
+    </div>
+	<div id="all">
+		<span>播放全部</span>
+	</div>
+    <ul id="modeList">
+		
+    </ul>
+    <audio src="" id="audio" autoplay="autoplay"></audio>
+    <div class="contro">
+        <div class="detail">
+            <div class="left">
+                <img src="" alt="">
+            </div>
+
+            <div class="right">
+                <h4></h4>
+                <h5></h5>
+            </div>
+        </div>
+        <div id="next"></div>
+        <div id="play"></div>
+        <div id="menu"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    //获得当前窗口的地址；
+
+    var texH4="";
+    var texH5="";
+	var _index="";
+	var off=true;
+	var songArr="";
+    var _url=window.location.href;
+    //在当前窗口的地址；过滤出数字
+    var _identify=_url.match(/\/\d+/g)[0].match(/\d+/)[0];
+    //配置请求下拉列表的数据 的url
+    var _path='https://api.imjad.cn/cloudmusic?type=playlist&id='+_identify;
+
+//请求整个页面的数据-------------------------------------
+
+
+    $.get(_path,null,function(data,a){
+		if(a=="success"){
+	   
+			//列表页面的banner部分插入相关标签和内容
+			console.log(data);
+			$("<img src='"+img_url+"'>"+
+					"<div class='left'>"+
+						"<h3>"+data.playlist.name+"</h3>"+
+						"<span>"+
+							"<img src='"+data.playlist.creator["avatarUrl"]+ "'>"+
+							"<p>"+data.playlist.creator["nickname"]+"</p>"+
+						"</span>"+
+					"</div>"
+			)
+			.appendTo("#banner_detail");
+
+			var _con="";
+			//将歌曲列表数据解析----------------------------
+			for(var k in data.playlist.tracks){
+				_con+="<li id='"+data.playlist.tracks[k].id+"'><span>"+(Number(k)+1)+"</span>"+"<div class='item'><h4>"+data.playlist.tracks[k].name+"</h4><h5>"+data.playlist.tracks[k].ar[0].name+"</h5></div></li>"
+			};
+			$('#modeList').append(_con);
+			
+			 songArr=$('#modeList li');
+			//点击每一个li时，得到该li包含id的的url，在请求数据最新的歌曲；
+			
+			songArr.click(function(){
+				$(".contro").css("display","block");
+				//当点击时，让音乐控制面板显示
+				 _index=$(this).index();
+				
+				//点击每一个li时，暂停正在可能在播放的audio;
+				$("#paly").css("background","url(images/contro_05.png) no-repeat")
+				$("#audio")[0].pause();
+				
+				//获得对应的歌曲的数据；
+				lodeMusic();		   
+			});
+		};
+
+    });
+	
+		controPlay();
+		function lodeMusic(){
+			$(".contro").css("display","block");
+			//得到控制面板的标题
+			texH4=songArr.eq(_index).find("h4").text();
+			texH5=songArr.eq(_index).find("h5").text();
+			var _url="https://musicapi.duapp.com/api.php?type=url&idmusicapi.duapp.com/api.php?type=url&id="+songArr[_index].id
+		//请求对应的歌曲数据audio的src的值。
+			$.get(_url,null,function(data,textStatus){
+				if(textStatus=="success"){
+					console.log(data);
+					$("#audio").attr("src",data.data[0].url); //得到aodio的最新歌曲的src
+					$("#audio")[0].play();//当点击每一个li时，播放audio
+					$(".right h4").text(texH4);
+					$(".right h5").text(texH5);
+				};
+			})
+		};
+		
+		
+		function controPlay(){
+		//播放按钮点击时，背景图切换
+			$("#play").click(function(){
+				if(off){
+					$("#audio")[0].pause();
+					$(this).css("background","url(images/contro_05.png) no-repeat")
+				}else{
+					$("#audio")[0].play();
+					$(this).css("background","url(images/contro_05__05.png) no-repeat")
+				};
+				off=!off;
+			});
+			
+			//当点击,控制面板上的下一首时，让_index加一，再次请求数据
+			$("#next").click(function(){
+				_index+=1;
+				if(_index==songArr.length){
+					_index=0;
+				};
+				lodeMusic();
+			});
+			//点击全部播放按钮
+			$("#all span").click(function(){
+			
+				
+			});
+		};
+		
+
+
+</script>
